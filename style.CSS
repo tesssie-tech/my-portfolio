@@ -1,18 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=BBH+Hegarty&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sekuya&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
 /* --- CSS VARIABLES & RESET --- */
         :root {
-            --bg-color: #FEDADA;
-            --card-bg: #EDAFBA;
-            --input-bg: #Ffffff;
-            --text-main: #F37A7B;
-            --text-muted: #2B856D;
+            --bg-color: #110F1A;
+            --input-bg: #030202;
+            --text-main: #FF006B;
+            --text-muted: rgb(13, 120, 194);
             --accent-design: #f472b6; /* Pink */
-            --accent-code: #9DE58D;   /* Blue */
+            --accent-code: rgb(13, 120, 194);   /* Blue */
             --accent-art: #facc15;    /* Yellow */
             --font-main: 'Inter', system-ui, -apple-system, sans-serif;
         }
@@ -60,10 +57,49 @@
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+  border: var(--text-muted) 1px solid ;
+            padding: 8px 8px;
+            border-radius: 8px;
+             font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  
+            
         }
-        nav a:hover { color: var(--text-main); }
-
+        nav a:hover { color: var(--text-main); 
+        border: var(--text-main) 1px solid;}
+        
+ 
         /* --- HERO SECTION (UPDATED FOR PHOTO) --- */
+        /* --- HERO ANIMATION STAGES --- */
+
+/* 1. Initial State: Hidden and pushed down */
+.hero h1,
+.hero p,
+.hero-buttons,
+.hero-tech,
+.hero-image-container {
+    opacity: 0;
+    transform: translateY(40px); /* Start 40px lower */
+    transition: all 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000); /* "Ease-Out-Cubic" for smoothness */
+}
+
+/* 2. Active State: Visible and back to normal position */
+/* The 'visible' class will be added by JavaScript */
+.hero.visible h1,
+.hero.visible p,
+.hero.visible .hero-buttons,
+.hero.visible .hero-tech,
+.hero.visible .hero-image-container {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 3. The Sequence (Staggering the entrance) */
+.hero.visible h1 { transition-delay: 0.1s; }                 /* Headline first */
+.hero.visible p { transition-delay: 0.3s; }                  /* Then text */
+.hero.visible .hero-buttons { transition-delay: 0.5s; }      /* Then buttons */
+.hero.visible .hero-tech { transition-delay: 0.7s; }         /* Then tech stack */
+.hero.visible .hero-image-container { transition-delay: 0.9s; } /* Finally, the photo */
         .hero {
             min-height: 85vh;
             display: flex;
@@ -95,19 +131,18 @@
             font-size: clamp(2.5rem, 4vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 20px;
-             font-family: "BBH Hegarty", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+           font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+ 
         }
 
         .hero p {
             font-size: 1rem;
             color: var(--text-muted);
             margin-bottom: 30px;
-             font-family: "Montserrat", sans-serif;
+            font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
+  
         }
 
         .highlight-ux { color: var(--accent-design); }
@@ -212,11 +247,9 @@
             margin: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
-             font-family: "Roboto Condensed", sans-serif;
+            font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
+  
         }
 
         .filter-btn:hover, .filter-btn.active {
@@ -251,7 +284,6 @@ a.filter-btn {
         }
 
         .card {
-            background-color: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease;
@@ -331,10 +363,9 @@ a.filter-btn {
             font-weight: 600;
             border-bottom: 2px solid var(--accent-code);
             align-self: flex-start;
-              font-family: "Rubik", sans-serif;
+            font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
+  
         }
 
         /* --- CONTACT FORM --- */
@@ -391,6 +422,10 @@ a.filter-btn {
             border-top: 1px solid rgba(255,255,255,0.05);
             margin-top: 50px;
         }
+         footer p{
+            font-size:10px ;
+             color: var( --text-main);
+         }
 /* --- SOCIAL ICONS CSS --- */
 .social-links {
     display: flex;
@@ -421,6 +456,34 @@ a.filter-btn {
 .social-link:hover .linkedin { fill: #0077b5; }
 .social-link:hover .behance { fill: #1769ff; }
 .social-link:hover .instagram { fill: #E1306C; }
+/* --- ANIMATION STATES --- */
+
+/* 1. Initial State: Hide icons and text, push them down slightly */
+footer .social-link,
+footer p {
+    opacity: 0;
+    transform: translateY(30px); /* Start 30px lower */
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy smooth effect */
+}
+
+/* 2. Active State: This class is added by JS when visible */
+footer.visible .social-link,
+footer.visible p {
+    opacity: 1;
+    transform: translateY(0); /* Return to normal position */
+}
+
+/* 3. The Sequence (Staggered Delays) */
+/* This ensures they don't all appear at once */
+footer.visible .social-link:nth-child(1) { transition-delay: 0.1s; }
+footer.visible .social-link:nth-child(2) { transition-delay: 0.2s; }
+footer.visible .social-link:nth-child(3) { transition-delay: 0.3s; }
+footer.visible .social-link:nth-child(4) { transition-delay: 0.4s; }
+
+/* The text appears last */
+footer.visible p { 
+    transition-delay: 0.6s; 
+}
         /* --- RESPONSIVE MEDIA QUERIES --- */
         @media (max-width: 900px) {
             .hero {
