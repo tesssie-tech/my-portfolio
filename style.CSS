@@ -59,6 +59,7 @@ text-decoration: none;
             transition: all 0.3s ease;
             font-family: "Nunito Sans", sans-serif;
   font-optical-sizing: auto;
+  font-size:small;
             
         }
         nav a:hover {  border-color: var(--text-main);
